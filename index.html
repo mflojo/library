@@ -11,6 +11,26 @@
 
 <body>
     <div id="library">
+
+        <dialog id="userInput">
+            <form>
+                <p>Book Title: </p>
+                <input type="text" id="bookTitle" placeholder="enter book title here">
+                <p>Book Author:</p>
+                <input type="text" id="bookAuthor" placeholder="author">
+                <p>Number of Pages:</p>
+                <input type="number" id="bookPages">
+                <p>Have you read this book?</p>
+                <select id="bookRead">
+                    <option value="default">No</option>
+                    <option>Yes</option>
+                </select>
+            </form>
+        </dialog>
+
+        <button id="addBook">Add New Book</button>
+
+
         <div id="bookShelf"></div>
     </div>
 </body>
