@@ -10,7 +10,27 @@ showButton.addEventListener("click", () => {
     dialog.showModal();
 });
 
+confirmBtn.addEventListener("click", (e) => {
+    e.preventDefault();
 
+    let newTitle = userTitle.value.trim();
+    let newAuthor = userAuthor.value.trim();
+    let newPages = parseInt(userPages.value, 10);
+    let newRead = userRead.value === "true";
+
+    if (!newTitle || !newAuthor || isNaN(newPages)) {
+        alert("Please enter valid book details.");
+    }
+
+    addBookToLibrary(newTitle, newAuthor, newPages, newRead);
+
+    userTitle.value = "";
+    userAuthor.value = "";
+    userPages.value = "";
+    userRead.value = "false";
+
+    dialog.close();
+});
 
 const myLibrary = [];
 
