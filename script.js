@@ -1,3 +1,17 @@
+const showButton = document.querySelector("#addBook");
+const dialog = document.querySelector("#userInput");
+const userTitle = document.querySelector("#bookTitle");
+const userAuthor = document.querySelector("#bookAuthor");
+const userPages = document.querySelector("#bookPages");
+const userRead = document.querySelector("#bookRead");
+const confirmBtn = document.querySelector("#confirmBtn");
+
+showButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+
+
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
@@ -42,6 +56,8 @@ function removeBook(index) {
     myLibrary.splice(index, 1);
     displayBooks();
 }
+
+
 
 
 
