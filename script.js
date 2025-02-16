@@ -20,6 +20,7 @@ confirmBtn.addEventListener("click", (e) => {
 
     if (!newTitle || !newAuthor || isNaN(newPages)) {
         alert("Please enter valid book details.");
+        return;
     }
 
     addBookToLibrary(newTitle, newAuthor, newPages, newRead);
@@ -43,6 +44,7 @@ function Book(title, author, pages, read) {
 
 Book.prototype.toggleRead = function () {
     this.read = !this.read;
+    displayBooks;
 }
 
 function addBookToLibrary(title, author, pages, read) {
