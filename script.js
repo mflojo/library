@@ -7,9 +7,14 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.toggleRead = function () {
+    this.read = !this.read;
+}
+
 function addBookToLibrary(title, author, pages, read) {
     let newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
+    displayBooks();
 }
 
 function displayBooks() {
@@ -25,17 +30,12 @@ function displayBooks() {
             <p>Author: ${book.author}</p>
             <p>Pages: ${book.pages}</p>
             <p>Status: ${book.read ? "Read" : "Not Read Yet"}</p>
-            <button onclick="toggleRead(${index})">Toggle Read</button>
+            <button onclick="myLibrary[${index}].toggleRead(); displayBooks()">Toggle Read</button>
             <button onclick="removeBook(${index})">Remove</button>
         `;
 
         bookShelf.appendChild(bookCard);
     });
-}
-
-function toggleRead(index) {
-    myLibrary[index].read = !myLibrary[index].read;
-    displayBooks();
 }
 
 function removeBook(index) {
