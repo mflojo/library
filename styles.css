@@ -36,11 +36,6 @@ h1, h2, h3, h4, h5, h6 {
     isolation: isolate;
 }
 
-.card:hover {
-	top: -2px;
-	box-shadow: 0 4px 5px rgba(0,0,0,0.2);
-}
-
 dialog {
     width: 400px;
     padding: 20px;
@@ -62,4 +57,58 @@ dialog::backdrop {
         green
     );
     opacity: 0.75;
+}
+
+body {
+    background-color: #1e1e2e;
+    color: antiquewhite;
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+}
+
+#bookShelf {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    height: auto;
+}
+
+.card {
+    margin: 10px;
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+    gap: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.card:hover {
+	top: -2px;
+	box-shadow: 0 4px 5px rgba(0,0,0,0.2);
+    border: 1px solid grey;
+}
+
+button {
+    border-radius: 15px;
+    margin: 10x;
+    padding: 5px;
+    background-color: #007bff;
+}
+
+button:hover {
+    background-color: #0056b3;
 }
