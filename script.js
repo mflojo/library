@@ -87,5 +87,11 @@ function removeBook(index) {
 
 addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 299, false);
 addBookToLibrary("The Shining", "Stephen King", 447, false);
+addBookToLibrary("1984", "George Orwell", 328, false);
+addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
+addBookToLibrary("Dune", "Frank Herbert", 412, false);
+addBookToLibrary("Pride and Prejudice", "Jane Austen", 279, false);
+addBookToLibrary("The Catcher in the Rye", "J.D. Salinger", 277, false);
+addBookToLibrary("Moby-Dick", "Herman Melville", 635, false);
 
 displayBooks();
