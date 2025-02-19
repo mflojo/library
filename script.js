@@ -33,65 +33,79 @@ confirmBtn.addEventListener("click", (e) => {
     dialog.close();
 });
 
-const myLibrary = [];
+class Library {
+    library;
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+    constructor() {
+        this.library = [];
+        console.log("library created");
+    }
+
+    addBook(book) {
+        this.library.push(book);
+        console.log("book added to library");
+        this.displayBooks();
+    }
+    
+    removeBook(index) {
+        this.library.splice(index, 1);
+        this.displayBooks();
+    }
+
+    displayBooks() {
+        const display = document.querySelector("#bookShelf");
+        display.innerHTML = "";
+
+        this.library.forEach((book, index) => {
+            const bookCard = document.createElement("div");
+            bookCard.classList.add("card");
+
+            bookCard.innerHTML = `
+                <h3>${book.title}</h3>
+                <p>Author: ${book.author}</p>
+                <p>Pages: ${book.pages}</p>
+                <p>Status: ${book.read ? "Read" : "Not Read Yet"}</p>
+                <button onclick="library[${index}].switchRead(); displayBooks()">Toggle Read</button>
+                <button onclick="removeBook(${index})">Remove</button>
+            `;
+            display.appendChild(bookCard);
+        });
+    }
 }
 
-Book.prototype.toggleRead = function () {
-    this.read = !this.read;
-    displayBooks;
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        console.log("book successfully created");
+    }
+
+    switchRead() {
+        this.read = !this.read;
+        this.displayBooks();
+    }
+
 }
 
-function addBookToLibrary(title, author, pages, read) {
-    let newBook = new Book(title, author, pages, read);
-    myLibrary.push(newBook);
-    displayBooks();
-}
+const library = new Library();
 
-function displayBooks() {
-    const bookShelf = document.querySelector("#bookShelf");
-    bookShelf.innerHTML = "";
+const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 299, false);
+const book2 = new Book("The Shining", "Stephen King", 447, false)
+const book3 = new Book("1984", "George Orwell", 328, false);
+const book4 = new Book("To Kill a Mockingbird", "Harper Lee", 281, false);
+const book5 = new Book("Dune", "Frank Herbert", 412, false);
+const book6 = new Book("Pride and Prejudice", "Jane Austen", 279, false);
+const book7 = new Book("The Catcher in the Rye", "J.D. Salinger", 277, false);
+const book8 = new Book("Moby-Dick", "Herman Melville", 635, false);
 
-    myLibrary.forEach((book, index) => {
-        const bookCard = document.createElement("div");
-        bookCard.classList.add("card");
-
-        bookCard.innerHTML = `
-            <h3>${book.title}</h3>
-            <p>Author: ${book.author}</p>
-            <p>Pages: ${book.pages}</p>
-            <p>Status: ${book.read ? "Read" : "Not Read Yet"}</p>
-            <button onclick="myLibrary[${index}].toggleRead(); displayBooks()">Toggle Read</button>
-            <button onclick="removeBook(${index})">Remove</button>
-        `;
-
-        bookShelf.appendChild(bookCard);
-    });
-}
-
-function removeBook(index) {
-    myLibrary.splice(index, 1);
-    displayBooks();
-}
-
-
-
-
-
-//dummy books
-
-addBookToLibrary("The Hobbit", "J.R.R. Tolkien", 299, false);
-addBookToLibrary("The Shining", "Stephen King", 447, false);
-addBookToLibrary("1984", "George Orwell", 328, false);
-addBookToLibrary("To Kill a Mockingbird", "Harper Lee", 281, false);
-addBookToLibrary("Dune", "Frank Herbert", 412, false);
-addBookToLibrary("Pride and Prejudice", "Jane Austen", 279, false);
-addBookToLibrary("The Catcher in the Rye", "J.D. Salinger", 277, false);
-addBookToLibrary("Moby-Dick", "Herman Melville", 635, false);
-
-displayBooks();
+library.addBook(book1);
+library.addBook(book2);
+library.addBook(book3);
+library.addBook(book4);
+library.addBook(book5);
+library.addBook(book6);
+library.addBook(book7);
+library.addBook(book8);
+console.log(library.library);
