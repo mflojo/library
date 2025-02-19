@@ -23,7 +23,8 @@ confirmBtn.addEventListener("click", (e) => {
         return;
     }
 
-    addBookToLibrary(newTitle, newAuthor, newPages, newRead);
+    let newBook = new Book(newTitle, newAuthor, newPages, newRead);
+    library.addBook(newBook);
 
     userTitle.value = "";
     userAuthor.value = "";
@@ -43,13 +44,21 @@ class Library {
 
     addBook(book) {
         this.library.push(book);
-        console.log("book added to library");
+        console.log(`${book.title} added to library`);
         this.displayBooks();
     }
     
     removeBook(index) {
         this.library.splice(index, 1);
         this.displayBooks();
+    }
+
+    switchRead(index) {
+        let book = this.library[index];
+        if (book) {
+            book.toggleRead();
+            this.displayBooks();
+        }
     }
 
     displayBooks() {
@@ -65,7 +74,7 @@ class Library {
                 <p>Author: ${book.author}</p>
                 <p>Pages: ${book.pages}</p>
                 <p>Status: ${book.read ? "Read" : "Not Read Yet"}</p>
-                <button onclick="library[${index}].switchRead(); displayBooks()">Toggle Read</button>
+                <button onclick="switchRead(${index})">Toggle Read</button>
                 <button onclick="removeBook(${index})">Remove</button>
             `;
             display.appendChild(bookCard);
@@ -79,14 +88,12 @@ class Book {
         this.author = author;
         this.pages = pages;
         this.read = read;
-        console.log("book successfully created");
+        console.log(`book ${title} created`);
     }
 
-    switchRead() {
+    toggleRead() {
         this.read = !this.read;
-        this.displayBooks();
     }
-
 }
 
 const library = new Library();
@@ -108,4 +115,3 @@ library.addBook(book5);
 library.addBook(book6);
 library.addBook(book7);
 library.addBook(book8);
-console.log(library.library);
