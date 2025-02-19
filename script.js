@@ -74,9 +74,22 @@ class Library {
                 <p>Author: ${book.author}</p>
                 <p>Pages: ${book.pages}</p>
                 <p>Status: ${book.read ? "Read" : "Not Read Yet"}</p>
-                <button onclick="switchRead(${index})">Toggle Read</button>
-                <button onclick="removeBook(${index})">Remove</button>
             `;
+
+            const toggleBtn = document.createElement("button");
+            toggleBtn.textContent = "Toggle Read";
+            toggleBtn.addEventListener("click", () => {
+                this.switchRead(index);
+            });
+
+            const removeBtn = document.createElement("button");
+            removeBtn.textContent = "Remove";
+            removeBtn.addEventListener("click", () => {
+                this.removeBook(index);
+            });
+
+            bookCard.appendChild(toggleBtn);
+            bookCard.appendChild(removeBtn);
             display.appendChild(bookCard);
         });
     }
