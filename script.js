@@ -5,6 +5,22 @@ const userAuthor = document.querySelector("#bookAuthor");
 const userPages = document.querySelector("#bookPages");
 const userRead = document.querySelector("#bookRead");
 const confirmBtn = document.querySelector("#confirmBtn");
+const titleError = document.querySelector("#titleError");
+const authorError = document.querySelector("#authorError");
+const pagesError = document.querySelector("#pagesError");
+
+function validateForm() {
+    let titleLength = userTitle.value.trim().length;
+    let authorLength = userAuthor.value.trim().length;
+    let pagesValue = userPages.value.trim();
+    let pagesValid = /^[1-9]\d{0,2}$|^1999$/.test(pagesValue);
+
+    titleError.textContent = titleLength < 3 ? `Title must be at least 3 characters, you entered (${titleLength})` : "";
+    authorError.textContent = authorLength < 3 ? `Author must be at least 3 characters, you entered (${authorLength})` : "";
+    pagesError.textContent = !pagesValid ? "Pages must be between 1 and 1999" : "";
+}
+
+[userTitle, userAuthor, userPages].forEach(input => input.addEventListener("input", validateForm));
 
 showButton.addEventListener("click", () => {
     dialog.showModal();
@@ -18,8 +34,12 @@ confirmBtn.addEventListener("click", (e) => {
     let newPages = parseInt(userPages.value, 10);
     let newRead = userRead.value === "true";
 
-    if (!newTitle || !newAuthor || isNaN(newPages)) {
-        alert("Please enter valid book details.");
+    let titleValid = newTitle.length >= 3;
+    let authorValid = newAuthor.length >= 3;
+    let pagesValid = /^[1-9]\d{0,2}$|^1999$/.test(userPages.value.trim());
+
+    if (!titleValid || !authorValid || !pagesValid) {
+        validateForm();
         return;
     }
 
@@ -33,6 +53,8 @@ confirmBtn.addEventListener("click", (e) => {
 
     dialog.close();
 });
+
+
 
 class Library {
     library;
